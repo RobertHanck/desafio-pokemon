@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{card.name}}</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-list role="list">
+        <mat-list-item role="listitem">
+            <b>Ataque: </b> <span [style.margin-left]="'5px'"> {{attack.name}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <b>Mana: </b> <span [style.margin-left]="'5px'"> {{attack.convertedEnergyCost}}</span> <span [style.margin-left]="'5px'" *ngIf="!attack.convertedEnergyCost">Não Informado </span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <b>Dano: </b> <span [style.margin-left]="'5px'"> {{attack.damage}}</span> <span [style.margin-left]="'5px'" *ngIf="!attack.damage">Não Informado </span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            
+            <!--<p [style.margin-top]="'10px'"><b>Descrição: </b> {{attack.text}}</p> <span [style.margin-left]="'5px'" *ngIf="!attack.text">Não Informado </span>-->
+        </mat-list-item>
+        <span [style.margin-top]="'15px'" *ngIf="attack.text"><b>Descrição: </b> {{attack.text}}</span>
+        <span [style.margin-top]="'15px'" *ngIf="!attack.text"><b>Descrição: </b> Não Informado </span>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions [style.float]="'right'">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

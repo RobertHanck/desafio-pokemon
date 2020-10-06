@@ -1,0 +1,13 @@
+:host {
+    .mat-toolbar-single-row {
+        height: 250px;
+    }
+    .search {
+        width: 50%;
+    }
+    @media only screen and (max-width: 600px) {
+        .card-pokemon {
+            margin-right: 70px !important;
+        }
+    }
+}

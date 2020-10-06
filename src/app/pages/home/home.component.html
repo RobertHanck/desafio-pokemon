@@ -1,0 +1,56 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFlex="100%" [style.min-height]="'90vh'">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100%">
+        <img [style.width]="'100%'" [style.margin-top]="'100px'" src="../../../assets/images/initialPage.jpg"
+            alt="Pokemon - Go">
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div [style.margin]="'20px 0px'" fxLayout="column" fxFlex="80%" fxLayoutGap="10%">
+            <p [style.text-align]="'center'">Pokémon GO é um jogo eletrônico free-to-play de realidade aumentada voltado para smartphones. O jogo é desenvolvido entre a Niantic, Inc., a Nintendo e a The Pokémon Company para as plataformas iOS e Android.<br><b>Fonte:</b> Wikipédia</p>
+        </div>
+    </div>
+    <div [style.margin]="'20px 0px'" fxLayout="row" fxFlex="80%" fxLayoutGap="10%">
+        <h1 [style.color]="'#461561'" [style.font-weight]="'500'">Confira os Pokemons</h1>
+    </div>
+    <div 
+        [style.margin]="'20px 0px'" 
+        fxLayout="row-wrap" 
+        fxLayout.xs="column"
+        [style.flex-wrap]="'wrap'"
+        [style.z-index]="isSmallScreen ? '0' : '0'"
+        [style.justify-content]="'center'"
+        [style.max-width]="'80%'" 
+        *ngIf="pokemons else loading">
+        <app-card *ngFor="let pokemon of pokemons.slice(inicio, qnt)" [pokemon]="pokemon" [routerLink]="['./view/'+pokemon.id]"></app-card>
+        <button mat-icon-button 
+            color="primary" 
+            *ngIf="isSmallScreen" 
+            [style.display]="'flex'"
+            [style.position]="'absolute'"
+            [style.left]="'5px'"
+            [style.z-index]="'1'"
+            [disabled]="inicio == 0"
+            (click)="inicio = inicio - 1; qnt = qnt - 1">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button mat-icon-button 
+            color="primary"
+            *ngIf="isSmallScreen"
+            [style.display]="'flex'"
+            [style.position]="'absolute'"
+            [style.right]="'-5px'"
+            [style.z-index]="'1'"
+            [disabled]="inicio == pokemons.length-1"
+            (click)="inicio = inicio + 1; qnt = qnt + 1">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+    <button [style.margin-bottom]="'30px'" 
+        mat-raised-button color="primary" 
+        *ngIf="!isSmallScreen && pokemons" 
+        (click)="qnt = qnt + 4">Ver mais</button>
+</div>
+<ng-template #loading>
+    <div fxLayout="row" fxFlex="100%" [style.margin-bottom]="'30px'" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
